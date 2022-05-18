@@ -16,4 +16,12 @@ app.listen(port,(err) => {
     {
        console.log(`Anandhamalthunai :: server is running on port : ${port}`);
     }
-});
+}); 
+
+//middlewares(to build express application)
+
+//routing
+app.use('/',require('./routers/index'));
+
+
+
