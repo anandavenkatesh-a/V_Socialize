@@ -6,3 +6,14 @@ const port = 9000;
 //creating express application
 const app = express();
 
+//statring server on this port
+app.listen(port,(err) => {
+    if(err)
+    {
+       console.log(`Error in starting server : ${err}`);
+    }
+    else
+    {
+       console.log(`Anandhamalthunai :: server is running on port : ${port}`);
+    }
+});
