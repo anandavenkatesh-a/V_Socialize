@@ -1,8 +1,8 @@
 
 
 const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
 const port = 9000;
-
 //creating express application
 const app = express();
 
@@ -19,6 +19,10 @@ app.listen(port,(err) => {
 }); 
 
 //middlewares(to build express application)
+
+//setup layout
+app.use(expressLayouts);
+app.set('layout','./layouts/layout1'); //setting default layout
 
 //routing
 app.use('/',require('./routers/index'));
