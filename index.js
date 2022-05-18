@@ -23,6 +23,8 @@ app.listen(port,(err) => {
 //setup layout(must be written above routing)
 app.use(expressLayouts);
 app.set('layout','./layouts/layout1'); //setting default layout
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
 
 //setup static folder
 app.use(express.static('./assets'));
