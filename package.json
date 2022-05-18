@@ -1,0 +1,14 @@
+{
+  "name": "v_socialize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "VenkateshA-NITT-CSE-1st-year-106121141",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
