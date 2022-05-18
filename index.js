@@ -20,9 +20,12 @@ app.listen(port,(err) => {
 
 //middlewares(to build express application)
 
-//setup layout
+//setup layout(must be written above routing)
 app.use(expressLayouts);
 app.set('layout','./layouts/layout1'); //setting default layout
+
+//setup static folder
+app.use(express.static('./assets'));
 
 //routing
 app.use('/',require('./routers/index'));
