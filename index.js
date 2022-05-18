@@ -6,6 +6,9 @@ const db = require('./config/mongoose');
 const port = 9000;
 
 
+//Models
+const User = require('./models/user');
+ 
 //creating express application
 const app = express();
 
