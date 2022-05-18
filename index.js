@@ -23,5 +23,9 @@ app.listen(port,(err) => {
 //routing
 app.use('/',require('./routers/index'));
 
+//set up views and view engine
+app.set('view engine','ejs');
+app.set('views','./views');
+
 
 
