@@ -5,20 +5,40 @@ const { contentDisposition } = require('express/lib/utils');
 const User = require('../models/user');
 
 
-// module.exports.create_session = (req,res) => {
-//      const email = req.body.email;
-//      const password = req.body.password;
+module.exports.create_session = (req,res) => {
+     const email = req.body.email;
+     const password = req.body.password;
 
-//      //find the user
-//           //user exists
-//              //check if passwd match
-//                 //yes
-//                    //render profile and store identtiy of user in cookie
-//                 //no
-//                    //rediirect to sin-in page
-//           //user doesnot exixts
-//              //redirect to sign up
-// };
+     //find the user
+     User.findOne({email : email},(err,user) => {
+          if(err)
+          {
+               console.log('problem in signing in!');
+               return res.redirect('back');
+          }
+          else
+          {
+               if(user)
+               {
+                  if(user.password == password)
+                  {
+                      res.cookie('user_id',user._id); // user identity is eshtablished
+                      return res.redirect('/user/profile');
+                  }
+                  else
+                  {
+                      console.log('password doesnt match'); 
+                      return res.redirect('back');
+                  }
+               }
+               else
+               {
+                    console.log('account does not exists! create one!');
+                    return res.redirect('/user/sign-up');
+               }
+          }
+     });
+};
 
 module.exports.profile = (req,res) => {
      return res.render('profile');
