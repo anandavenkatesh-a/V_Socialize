@@ -3,8 +3,8 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
+const cookieParser = require('cookie-parser');
 const port = 9000;
-
 
 //Models
 const User = require('./models/user');
@@ -25,6 +25,10 @@ app.listen(port,(err) => {
 }); 
 
 //middlewares(to build express application)
+
+//setup parsers
+app.use(express.urlencoded());
+app.use(cookieParser());
 
 //setup layout(must be written above routing)
 app.use(expressLayouts);
