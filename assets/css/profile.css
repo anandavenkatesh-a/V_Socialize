@@ -4,3 +4,7 @@ h1{
     font-style: italic;
     color:brown;
 }
+#user_details{
+    list-style: none;
+    padding-left: 0;
+}

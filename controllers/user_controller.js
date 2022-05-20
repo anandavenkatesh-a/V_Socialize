@@ -1,6 +1,6 @@
 
 
-const { redirect } = require('express/lib/response');
+const { redirect, render } = require('express/lib/response');
 const { contentDisposition } = require('express/lib/utils');
 const User = require('../models/user');
 
@@ -41,7 +41,34 @@ module.exports.create_session = (req,res) => {
 };
 
 module.exports.profile = (req,res) => {
-     return res.render('profile');
+
+     if(req.cookies.user_id)
+     {
+          User.findById(req.cookies.user_id,(err,user) => {
+               if(err)
+               {
+                   console.log('error in rendering your profile');
+                   return res.redirect('/user/sign-in');
+               }
+               else
+               {
+                   if(user)
+                   {
+                        return res.render('profile',user);
+                   }
+                   else
+                   {
+                        console.log('you dont have account ');
+                        return res.redirect('/user/sign-up');
+                   }
+               }
+           });
+     }
+     else
+     {
+          return res.redirect('/user/sign-in');
+     }
+
 };
 
 module.exports.sign_in = (req,res) =>{
@@ -78,7 +105,6 @@ module.exports.create_account = (req,res) => {
                });
 
                const result = await new_user.save();
-               console.log(result);
                return true;
           }
           catch{
