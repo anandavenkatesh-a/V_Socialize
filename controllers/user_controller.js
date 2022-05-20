@@ -4,21 +4,9 @@ const { redirect } = require('express/lib/response');
 const { contentDisposition } = require('express/lib/utils');
 const User = require('../models/user');
 
-
-// module.exports.create_session = (req,res) => {
-//      const email = req.body.email;
-//      const password = req.body.password;
-
-//      //find the user
-//           //user exists
-//              //check if passwd match
-//                 //yes
-//                    //render profile and store identtiy of user in cookie
-//                 //no
-//                    //rediirect to sin-in page
-//           //user doesnot exixts
-//              //redirect to sign up
-// };
+module.exports.create_session = (req,res) => {
+     return res.redirect('/');
+};
 
 module.exports.profile = (req,res) => {
      return res.render('profile');

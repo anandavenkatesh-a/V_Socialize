@@ -4,8 +4,10 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport'); //Passport is middleware for Node.js that makes it easy to implement authentication and authorization.
+const localAuth = require('./config/passport_auth_local_strategy');
 const port = 9000;
-
 //Models
 const User = require('./models/user');
  
@@ -28,7 +30,7 @@ app.listen(port,(err) => {
 
 //setup parsers
 app.use(express.urlencoded());
-app.use(cookieParser());
+app.use(cookieParser()); //to populate req.cookies with an object keyed by cookie name
 
 //setup layout(must be written above routing)
 app.use(expressLayouts);
@@ -39,12 +41,30 @@ app.set('layout extractScripts',true);
 //setup static folder
 app.use(express.static('./assets'));
 
-//routing
-app.use('/',require('./routers/index'));
-
 //set up views and view engine
 app.set('view engine','ejs');
 app.set('views','./views');
 
+//To create cookie(present in brower) which stores the sessionID of a session(which is in server)
+//these cookies are called session cookies
+app.use(session({
+   name:"sessionid9000",
+   resave:false,
+   secret:"Anandamalthunai",
+   saveUninitialized:false,
+   cookie:{
+      maxAge : (1000)
+   }
+}));
 
+//to use passport and maintain session using passport
+app.use(passport.initialize()); // to instailize paasport
+app.use(passport.session());
+
+/* passport.session() acts as a middleware to alter the req 
+object and change the 'user' value that is currently the session 
+id (from the client cookie) into the true deserialized user object */
+
+//routing
+app.use('/',require('./routers/index'));
 
