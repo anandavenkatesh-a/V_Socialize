@@ -53,7 +53,7 @@ app.use(session({
    secret:"Anandamalthunai",
    saveUninitialized:false,
    cookie:{
-      maxAge : (1000)
+      maxAge : (1000*60*90)
    }
 }));
 
