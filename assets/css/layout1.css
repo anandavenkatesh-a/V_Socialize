@@ -7,4 +7,5 @@ body{
 }
 main{
     height:79vh;
+    overflow-y: scroll;
 }
