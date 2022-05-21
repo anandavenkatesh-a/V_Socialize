@@ -9,8 +9,8 @@ const session = require('express-session');
 const passport = require('passport'); //Passport is middleware for Node.js that makes it easy to implement authentication and authorization.
 const localAuth = require('./config/passport_auth_local_strategy');
 const MongoStore = require('connect-mongo');
+const sassMiddleware = require('node-sass-middleware'); 
 const port = 9000;
-
 
 //Models
 const User = require('./models/user');
@@ -41,6 +41,15 @@ app.use(expressLayouts);
 app.set('layout','./layouts/layout1'); //setting default layout
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
+
+//setup sass
+app.use(sassMiddleware({
+   src:"./assets/scss",
+   dest:"./assets/css",
+   debug:true, //untill production stage it should be true
+   outputStyle:"expanded",
+   prefix:"/css"
+}));
 
 //setup static folder
 app.use(express.static('./assets'));

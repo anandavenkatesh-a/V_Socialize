@@ -1,0 +1,34 @@
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 60px;
+  background-image: linear-gradient(#3333da, #6f6fee);
+  height: 9vh;
+  min-height: 42px;
+}
+
+footer nav {
+  width: 120px;
+  height: fit-content;
+}
+
+footer nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 0;
+  list-style: none;
+}
+
+footer nav ul li {
+  display: inline-block;
+  margin-left: 6px;
+}
+
+footer nav ul li a {
+  color: #b1bbf1;
+  text-decoration: none;
+}

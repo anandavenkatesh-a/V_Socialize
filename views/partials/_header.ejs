@@ -1,14 +1,16 @@
 
 
+<link rel="stylesheet" href="/css/header.css">
 <header>
-    <h1> V Socialize! </h1>
-    <ul>
-        <% if(locals.user){ %>
-           <li> <%= locals.user.name %> </li>
-           <li> <a href="/user/destroy-session"> Sign-out </a> </li>
-        <%}else {%>  
-            <li> <a href = "/user/sign-in"> Sign-in </a> </li>
-            <li> <a href="/user/sign-up"> Sign-up </a> </li>
-        <%}%>
-    </ul>
+    <h1 id = "page_heading"> V Socialize <% if(locals.user){%> <%= ":" + locals.user.name %> <%}%> </h1>
+    <nav>
+        <ul>
+            <% if(locals.user){ %>
+            <li> <a href="/user/destroy-session"> Sign-out </a> </li>
+            <%}else {%>  
+                <li> <a href = "/user/sign-in"> Sign-in </a> </li>
+                <li> <a href="/user/sign-up"> Sign-up </a> </li>
+            <%}%>
+        </ul>
+    </nav>
 </header>

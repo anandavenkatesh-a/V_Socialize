@@ -2,13 +2,9 @@
 
 body{
     margin:0;
-    text-align: center;
+    height: 100vh;
+    padding: 0;
 }
-header{
-    color:pink;
-    text-align: center;
-}
-footer{
-    color:green;
-    text-align: center;
+main{
+    height:79vh;
 }
