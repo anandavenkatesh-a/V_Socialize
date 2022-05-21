@@ -2,12 +2,16 @@
 
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
 const db = require('./config/mongoose');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport'); //Passport is middleware for Node.js that makes it easy to implement authentication and authorization.
 const localAuth = require('./config/passport_auth_local_strategy');
+const MongoStore = require('connect-mongo');
 const port = 9000;
+
+
 //Models
 const User = require('./models/user');
  
@@ -54,7 +58,12 @@ app.use(session({
    saveUninitialized:false,
    cookie:{
       maxAge : (1000*60*90)
-   }
+   },
+   store:MongoStore.create({
+      client:db.getClient(),
+      autoRemove:"native",
+      collectionName:"session"
+   })
 }));
 
 //to use passport and maintain session using passport
