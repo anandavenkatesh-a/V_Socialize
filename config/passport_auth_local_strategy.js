@@ -1,5 +1,6 @@
 
 
+const { redirect } = require('express/lib/response');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
@@ -71,11 +72,18 @@ passport.setAuthenticatedUserDetails = (req,res,next) => {
    if(req.isAuthenticated())
    {
        res.locals.user = req.user;//deserialized by passport
-       return next();
    }
-   else
-   {
-       return res.redirect('/user/sign-in');
-   }
+   
+   return next();
 };
+
+passport.notAuth = (req,res,next) => {
+     if(req.isAuthenticated())
+     {
+         return res.redirect('/');
+     }
+
+     return next();
+};
+
 module.exports = passport;

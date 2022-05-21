@@ -1,5 +1,14 @@
 
 
 <header>
-    This is Header
+    <h1> V Socialize! </h1>
+    <ul>
+        <% if(locals.user){ %>
+           <li> <%= locals.user.name %> </li>
+           <li> <a href="/user/destroy-session"> Sign-out </a> </li>
+        <%}else {%>  
+            <li> <a href = "/user/sign-in"> Sign-in </a> </li>
+            <li> <a href="/user/sign-up"> Sign-up </a> </li>
+        <%}%>
+    </ul>
 </header>

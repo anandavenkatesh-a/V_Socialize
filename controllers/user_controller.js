@@ -88,3 +88,9 @@ module.exports.create_account = (req,res) => {
           }
      });
 };
+
+module.exports.destroySession = (req,res) => {
+    req.logout();
+    console.log("Anand");
+    return res.redirect('back');
+};

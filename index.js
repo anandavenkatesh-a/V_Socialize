@@ -74,6 +74,9 @@ app.use(passport.session());
 object and change the 'user' value that is currently the session 
 id (from the client cookie) into the true deserialized user object */
 
+//set user details
+app.use(localAuth.setAuthenticatedUserDetails);
+
 //routing
 app.use('/',require('./routers/index'));
 
