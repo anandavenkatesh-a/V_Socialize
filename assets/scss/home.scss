@@ -3,3 +3,30 @@
 #title{
     color:skyblue;
 }
+form{
+    textarea{
+       background-color: rgb(176, 176, 231);
+    }
+    button{
+       background-color: blue;
+       color:white;
+       font-weight: bolder;
+       font-size: larger;
+    }
+}
+#posts-container{
+    border:2px solid blue;
+    list-style: none;
+    .post{
+        margin-bottom: 9px;
+        border: 2px solid skyblue;
+        .message{
+            margin:0;
+        }
+        .message_author{
+             background-color: rgb(43, 43, 63);
+             color:white;
+             font-size: smaller;
+        }
+    }
+}
