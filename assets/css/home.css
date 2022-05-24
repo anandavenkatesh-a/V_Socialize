@@ -2,11 +2,11 @@
   color: skyblue;
 }
 
-form textarea {
+#send_post textarea {
   background-color: #b0b0e7;
 }
 
-form button {
+#send_post button {
   background-color: blue;
   color: white;
   font-weight: bolder;

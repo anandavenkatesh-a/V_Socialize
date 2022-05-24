@@ -3,7 +3,7 @@
 #title{
     color:skyblue;
 }
-form{
+#send_post{
     textarea{
        background-color: rgb(176, 176, 231);
     }
@@ -27,6 +27,20 @@ form{
              background-color: rgb(43, 43, 63);
              color:white;
              font-size: smaller;
+        }
+        .comments_container{
+            
+            .comment{
+                
+                p{
+
+                }
+
+                button{
+                    
+                }
+
+            }
         }
     }
 }
