@@ -3,17 +3,29 @@
     <link rel="stylesheet" href="/css/home.css">
     <h1 id = "title" > Posts </h1>
 
-    <% if(locals.user) {%>
-      <form id = "send_post" action = "/post/create" method="post">
-        <textarea name="data" rows = "3" cols = "90" placeholder = "post your message here..."></textarea>
-        <br>
-        <button type = "submit"> Post </button>    
-      </form>
-    <%}%>
+    <main>
+      <% if(locals.user) {%>
+        <form id = "send_post" action = "/post/create" method="post">
+          <textarea name="data" rows = "3" cols = "90" placeholder = "post your message here..."></textarea>
+          <br>
+          <button type = "submit"> Post </button>    
+        </form>
+      <%}%>
 
-    
-    <ul id = "posts-container">
-        <% for(post of locals.posts) {%>
-           <%- include('./partials/_post.ejs') -%>
-        <%}%>    
-    </ul>
+      
+      <ul id = "posts-container">
+          <% for(post of locals.posts) {%>
+            <%- include('./partials/_post.ejs') -%>
+          <%}%>    
+      </ul>
+   </main>
+
+  <section>
+    <ul>
+      <%if(all_users){%> 
+        <%for(user of locals.all_users){%>
+          <li> <a href="/profile/<%= user.id %>"><%= user.name %></a> </li>
+        <%}%>
+      <%}%> 
+  </ul>  
+  </section>
