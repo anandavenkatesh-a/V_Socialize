@@ -9,7 +9,7 @@ module.exports.create_session = (req,res) => {
 };
 
 module.exports.profile = (req,res) => {
-     return res.render('profile');
+     return res.render('user_profile');
 };
 
 module.exports.sign_in = (req,res) =>{
@@ -98,4 +98,10 @@ module.exports.destroySession = (req,res) => {
     req.logout();
     console.log("Anand");
     return res.redirect('back');
+};
+
+module.exports.update_profile = (req,res) => {
+    User.findByIdAndUpdate(req.user.id,req.body,(err,user) =>{
+         return res.redirect('back');
+    });
 };

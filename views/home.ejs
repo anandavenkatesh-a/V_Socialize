@@ -24,7 +24,9 @@
     <ul>
       <%if(all_users){%> 
         <%for(user of locals.all_users){%>
-          <li> <a href="/profile/<%= user.id %>"><%= user.name %></a> </li>
+          <%if(user.id != locals.user.id ){%>
+            <li> <a href="/profile/<%= user.id %>"><%= user.name %></a> </li>
+          <%}%>
         <%}%>
       <%}%> 
   </ul>  

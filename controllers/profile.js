@@ -6,7 +6,7 @@ module.exports.showProfile = (req,res) => {
         if(user)
         {
             return res.render('profile',{
-                user:user
+                profile_user:user
             });
         }
     });

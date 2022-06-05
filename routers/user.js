@@ -19,4 +19,5 @@ router.post('/create-session',passport.authenticate('local',{failureRedirect:"/u
 
 router.get('/destroy-session',user_controller.destroySession);
 
+router.post('/update_profile',localAuth.checkAuthentication,user_controller.update_profile);
 module.exports = router;
