@@ -1,0 +1,9 @@
+
+
+<li class = "comment">
+    <% if(locals.user && locals.user.id == comment.user.id){ %>
+        <a href="/comment/destroy/<%= comment.id %>">X</a>       
+    <%}%>  
+    <p> <%= comment.data %> </p>
+    <span class = "comment-author"> <%= comment.user.email %> </span>
+ </li>

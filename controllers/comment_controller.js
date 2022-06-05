@@ -42,3 +42,20 @@ module.exports.create = (req,res) => {
        }
    });  
 };
+module.exports.destroy = (req,res) => {
+    //req.params.id => comment id
+    Comment.findById(req.params.id,(err,comment) => {
+        if(comment)
+        {
+            let postId = comment.post;
+            if(comment.user == req.user.id)
+            {
+                 comment.remove();
+
+                 Post.findById(postId,{$pull:{comments:req.params.id}},(err,post) =>{
+                     return res.redirect('back');  
+                 });
+            }
+        }
+    });
+};

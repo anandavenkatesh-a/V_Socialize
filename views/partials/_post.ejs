@@ -1,0 +1,22 @@
+
+
+    <li class = "post"> 
+       <% if(locals.user && post.user.id == locals.user.id) {%> 
+           <a href="/post/destroy/<%= post._id %>">X</a>
+       <%}%>
+       <p class = "message"> <%= post.data %> </p> 
+       <span class = "message_author"> <%= post.user.email %> </span> 
+       
+       <%if(locals.user){%>
+         <form action = <%= "/comment/create/?post_id="+ post._id %> class = "send_comment" method="post">
+           <textarea name="data" cols="30" rows="3" placeholder = "Type your comments here...."></textarea>
+           <br>
+           <button type="submit">Comment</button>
+         </form>
+       <%}%>
+       <ul class = "comments-container">
+             <% for(comment of post.comments){%>
+               <%- include('./_comment.ejs') -%>
+             <%}%>
+       </ul>
+    </li>
