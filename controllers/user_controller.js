@@ -58,12 +58,14 @@ module.exports.create_account = (req,res) => {
           if(err)
           {
                console.log('Error while signing up');
+               req.flash('err','Error in creating account');
                return res.redirect('back');
           }
           else
           {
                if(users.length)
                {
+                    req.flash('info','You already have account');
                     return res.redirect('/user/sign-in');
                }
                else
@@ -71,18 +73,21 @@ module.exports.create_account = (req,res) => {
                     if(confirmPassword())
                     {
                         console.log('inside confirm password!');
-                         if(add_to_db())
+                        if(add_to_db())
                         {
+                           req.flash('success','Account Successfully created ');
                            return res.redirect('/user/profile');
                         }
                         else
                         {
-                             return redirect('back');
+                           req.flash('err','Error in creating account');   
+                           return redirect('back');
                         }
                     }
                     else
                     {
-                        return res.redirect('back');
+                         req.flash('err','Error in creating account');                        
+                         return res.redirect('back');
                     }
                }
           }

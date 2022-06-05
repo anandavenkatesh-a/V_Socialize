@@ -15,6 +15,9 @@
     <ul id = "posts-container">
         <% for(post of locals.posts) {%>
            <li class = "post"> 
+              <% if(locals.user && post.user.id == locals.user.id) {%> 
+                  <a href="/post/destroy/<%= post._id %>">X</a>
+              <%}%>
               <p class = "message"> <%= post.data %> </p> 
               <span class = "message_author"> <%= post.user.email %> </span> 
               
@@ -29,7 +32,7 @@
                     <% for(comment of post.comments){%>
                       <li class = "comment">
                          <p> <%= comment.data %> </p>
-                         <span> <%= comment.user.email %> </span>
+                         <span class = "comment-author"> <%= comment.user.email %> </span>
                       </li>
                     <%}%>
               </ul>

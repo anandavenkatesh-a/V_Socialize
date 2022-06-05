@@ -14,6 +14,7 @@ const port = 9000;
 
 //Models
 const User = require('./models/user');
+const flash = require('connect-flash/lib/flash');
  
 //creating express application
 const app = express();

@@ -32,3 +32,13 @@
   color: white;
   font-size: smaller;
 }
+
+#posts-container .post .comments-container .comment p {
+  margin: 0px;
+}
+
+#posts-container .post .comments-container .comment span {
+  font-size: smaller;
+  background-color: #1b1bd3;
+  color: white;
+}
