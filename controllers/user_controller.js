@@ -96,8 +96,8 @@ module.exports.create_account = (req,res) => {
 };
 
 module.exports.destroySession = (req,res) => {
-    req.logout();
-    req.flash('success','Logged out');
+     req.flash('success','Logged out');
+     req.logout();
     return res.redirect('back');
 };
 
