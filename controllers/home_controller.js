@@ -7,12 +7,9 @@ module.exports.home = async function(req,res) {
 
     try{
         var allUsers;
-        
         if(req.user)
         {
-            await User.find({},(err,users) => {
-            allUsers = users;     
-            })
+            allUsers = await User.find({});
         }
         
         let posts = await Post.

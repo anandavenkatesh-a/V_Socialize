@@ -1,9 +1,10 @@
 
     
     <link rel="stylesheet" href="/css/home.css">
-    <h1 id = "title" > Posts </h1>
+  
 
-    <main>
+    <main id = "chats">
+      <h1 class = "title" > Posts </h1>
       <% if(locals.user) {%>
         <form id = "send_post" action = "/post/create" method="post">
           <textarea name="data" rows = "3" cols = "90" placeholder = "post your message here..."></textarea>
@@ -20,14 +21,19 @@
       </ul>
    </main>
 
-  <section>
+  <%if(locals.all_users){%> 
+    <link rel="stylesheet" href="./css/friend_list.css">
+  <section id = "friend-list">
+    
+    <h1 class = "title"> Friends </h1>
     <ul>
-      <%if(all_users){%> 
-        <%for(user of locals.all_users){%>
-          <%if(user.id != locals.user.id ){%>
-            <li> <a href="/profile/<%= user.id %>"><%= user.name %></a> </li>
+       
+        <%for(u of locals.all_users){%>
+          <%if(u.id != locals.user.id ){%>
+            <li> <a href="/profile/<%= u.id %>"><%= u.name %></a> </li>
           <%}%>
         <%}%>
-      <%}%> 
-  </ul>  
+    </ul>
   </section>
+  <%}%> 
+

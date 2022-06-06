@@ -1,43 +1,54 @@
-#title {
+main {
+  display: flex;
+}
+
+main #chats {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+main #chats .title {
   color: skyblue;
 }
 
-#send_post textarea {
+main #chats #send_post textarea {
   background-color: #b0b0e7;
 }
 
-#send_post button {
+main #chats #send_post button {
   background-color: blue;
   color: white;
   font-weight: bolder;
   font-size: larger;
 }
 
-#posts-container {
+main #chats #posts-container {
   border: 2px solid blue;
   list-style: none;
 }
 
-#posts-container .post {
+main #chats #posts-container .post {
   margin-bottom: 9px;
   border: 2px solid skyblue;
 }
 
-#posts-container .post .message {
+main #chats #posts-container .post .message {
   margin: 0;
 }
 
-#posts-container .post .message_author {
+main #chats #posts-container .post .message_author {
   background-color: #2b2b3f;
   color: white;
   font-size: smaller;
 }
 
-#posts-container .post .comments-container .comment p {
+main #chats #posts-container .post .comments-container .comment p {
   margin: 0px;
 }
 
-#posts-container .post .comments-container .comment span {
+main #chats #posts-container .post .comments-container .comment span {
   font-size: smaller;
   background-color: #1b1bd3;
   color: white;
