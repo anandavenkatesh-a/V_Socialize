@@ -6,12 +6,16 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
 //authentication -local strategy (finding who is that user)
-passport.use(new LocalStrategy({usernameField:"email"},
-    (email,password,done) => {
+passport.use(new LocalStrategy(
+    {
+        usernameField:"email",
+        passReqToCallback:true
+    },
+    (req,email,password,done) => {
       User.findOne({email:email},(err,user) => {
             if(err)
             {
-                console.log('auth failed : error in auth!');
+                req.flash('error','auth failed : error in auth!');
                 return done(err);
             }
             
@@ -21,17 +25,9 @@ passport.use(new LocalStrategy({usernameField:"email"},
                 {
                     return done(null,user); // provides the user(used for serializing)
                 }
-                else
-                {
-                    console.log('auth : wrong password');
-                    return done(null,false);
-                }
             }
-            else
-            {
-                console.log('auth failed : you are not our user!');
-                return done(null,false);
-            }
+            req.flash('error','auth failed : wrong Username / Password');
+            return done(null,false);
       });
 }));
 

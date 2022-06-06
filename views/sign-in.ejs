@@ -9,3 +9,15 @@
     <button type = "submit"> sign in</button>
 
 </form>
+
+<script>
+     <%if(locals.flash.error && locals.flash.error.length > 0){%>
+        new Noty({
+            theme:'mint',
+            type:'error',
+            layout:'topRight',
+            timeout:1500,
+            text:'<%= locals.flash.error %>'
+        }).show();
+     <%}%>   
+</script>
