@@ -9,12 +9,13 @@ const session = require('express-session');
 const passport = require('passport'); //Passport is middleware for Node.js that makes it easy to implement authentication and authorization.
 const localAuth = require('./config/passport_auth_local_strategy');
 const MongoStore = require('connect-mongo');
-const sassMiddleware = require('node-sass-middleware'); 
+const sassMiddleware = require('node-sass-middleware');
+const flash = require('connect-flash'); 
+const customMiddlware = require('./config/custom_middlewares');
 const port = 9000;
 
 //Models
 const User = require('./models/user');
-const flash = require('connect-flash/lib/flash');
  
 //creating express application
 const app = express();
@@ -87,6 +88,10 @@ id (from the client cookie) into the true deserialized user object */
 //set user details
 app.use(localAuth.setAuthenticatedUserDetails);
 
+
+//set up flash
+app.use(flash());
+app.use(customMiddlware.renderFlash);
 //routing
 app.use('/',require('./routers/index'));
 

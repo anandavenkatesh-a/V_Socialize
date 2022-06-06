@@ -5,6 +5,7 @@ const { contentDisposition } = require('express/lib/utils');
 const User = require('../models/user');
 
 module.exports.create_session = (req,res) => {
+     req.flash('success','Logged in');
      return res.redirect('/');
 };
 
@@ -96,7 +97,7 @@ module.exports.create_account = (req,res) => {
 
 module.exports.destroySession = (req,res) => {
     req.logout();
-    console.log("Anand");
+    req.flash('success','Logged out');
     return res.redirect('back');
 };
 

@@ -2,8 +2,14 @@
     
     <link rel="stylesheet" href="/css/home.css">
   
-
+     
+    <%if(locals.flash.success && locals.flash.success.length > 0){%>
+      <h5 class = "success-popup">
+        <%= locals.flash.success %>
+      </h5>
+    <%}%> 
     <main id = "chats">
+     
       <h1 class = "title" > Posts </h1>
       <% if(locals.user) {%>
         <form id = "send_post" action = "/post/create" method="post">

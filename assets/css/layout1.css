@@ -24,3 +24,14 @@ main{
 ::-webkit-scrollbar-thumb:hover{
     background-color: black;
 }
+.success-popup{
+    position: absolute;
+    background-color: lightgreen;
+    height: fit-content;
+    width: fit-content;
+    border:1px solid white;
+    color:white;
+    font-size: 1rem;
+    top:-12px;
+    right:0;
+}
