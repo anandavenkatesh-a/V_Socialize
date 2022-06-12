@@ -15,6 +15,9 @@
                 success: function(data){
                     let newPost = newPostDom(data.data.post);
                     $('#posts-container').prepend(newPost);
+
+                    let deleteLink = $(' .delete',newPost)
+                    deleteLink.click(deleteReq);
                 }, error: function(error){
                     console.log(error.responseText);
                 }
@@ -27,7 +30,7 @@
     let newPostDom = function(post){
         return $(`<li class = "post" id="post-${post._id}"> 
 
-        <a href="/post/destroy/${post._id}">X</a>
+        <a href="/post/destroy/${post._id}" class = 'delete'>X</a>
 
         <p class = "message"> ${ post.data } </p> 
 
@@ -46,5 +49,25 @@
  `);        
     }
 
+
+    function deleteReq(e)
+    {
+        e.preventDefault();
+
+        $.ajax({
+            type:'get',
+            url:$(this).prop('href'),
+            success:(post_id) => {
+                $(`#post-${post_id.data}`).remove();
+            },error:(err) => {
+                console.log(err.responseText);
+            }
+        });
+    }
+
     createPost();
+
 }
+
+
+

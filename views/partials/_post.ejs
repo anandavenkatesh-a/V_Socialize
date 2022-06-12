@@ -1,8 +1,8 @@
 
 
-    <li class = "post"> 
+    <li class = "post" id ='post-<%= post._id %>'> 
        <% if(locals.user && post.user.id == locals.user.id) {%> 
-           <a href="/post/destroy/<%= post._id %>">X</a>
+           <a href="/post/destroy/<%= post._id %>" class = 'delete'>X</a>
        <%}%>
        <p class = "message"> <%= post.data %> </p> 
        <span class = "message_author"> <%= post.user.email %> </span> 

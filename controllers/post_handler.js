@@ -12,17 +12,14 @@ module.exports.create = async (req,res) => {
         
         post.user = req.user;
         
-        if (req.xhr){
-            return res.status(200).json({
+        req.flash('success', 'Post published!');
+        
+        return res.status(200).json({
                 data: {
                     post: post
                 },
                 message: "Post created!"
-            });
-        }
-
-        req.flash('success', 'Post published!');
-        return res.redirect('back');
+        });
 
     }catch(err){
         req.flash('error', err);
@@ -44,8 +41,16 @@ module.exports.delete = (req,res) => {
               {
                  post.remove();
                  
+    
                  Comment.deleteMany({post:post._id},(err) => {
-                     return res.redirect('back');     
+                     
+                    if(req.xhr){
+                        return res.status(200).json({
+                            data:req.params.id,
+                            message:'deleted the post'
+                        });
+
+                    }
                  });
               }
               else
@@ -61,4 +66,5 @@ module.exports.delete = (req,res) => {
           }
       }
     });
+
 };
