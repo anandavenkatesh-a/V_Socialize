@@ -2,22 +2,32 @@
 
 const Post = require('../models/post');
 const Comment = require('../models/comment');
-module.exports.create = (req,res) => {
-    const new_post = new Post({
-       data:req.body.data,
-       user:req.user._id
-   });
+const User = require('../models/user');
+module.exports.create = async (req,res) => {
+    try{
+        let post = await Post.create({
+            data: req.body.data,
+            user: req.user._id
+        });
+        
+        post.user = req.user;
+        
+        if (req.xhr){
+            return res.status(200).json({
+                data: {
+                    post: post
+                },
+                message: "Post created!"
+            });
+        }
 
-   add = async () => {
-      try{
-        const result = await new_post.save();
-        return res.redirect('/');
-      }catch{
-          return res.render('<h1>Error in adding post</h1>');
-      }  
-   };
+        req.flash('success', 'Post published!');
+        return res.redirect('back');
 
-   add();
+    }catch(err){
+        req.flash('error', err);
+        return res.redirect('back');
+    }
 };
 module.exports.delete = (req,res) => {
     Post.findById(req.params.id,(err,post) => {

@@ -20,6 +20,9 @@ module.exports.home = async function(req,res) {
                 populate:{
                     path:"user"
                 }
+            }).
+            sort({
+                _id:-1
             });
 
         return res.render('home',{
