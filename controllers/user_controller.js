@@ -3,6 +3,8 @@
 const { redirect } = require('express/lib/response');
 const { contentDisposition } = require('express/lib/utils');
 const User = require('../models/user');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.create_session = (req,res) => {
      req.flash('success','Logged in');
@@ -101,8 +103,31 @@ module.exports.destroySession = (req,res) => {
     return res.redirect('back');
 };
 
-module.exports.update_profile = (req,res) => {
-    User.findByIdAndUpdate(req.user.id,req.body,(err,user) =>{
+module.exports.update_profile = async (req,res) => {
+    let user = await User.findById(req.user._id);
+    User.avatarUpload(req,res,(err) => {
+         if(err){
+           console.log(err);
+           return res.redirect('back');
+         }
+
+         user.name = req.body.name;
+         
+         console.log(req.file);
+
+         if(req.file){
+            try{
+               if(user.avatar){
+                  fs.unlinkSync(path.join(__dirname,'..',user.avatar));               
+               } 
+            }catch{} 
+
+           user.avatar = User.avatar_path + '/' + req.file.filename;
+
+         }
+
+         user.save();
+
          return res.redirect('back');
     });
 };

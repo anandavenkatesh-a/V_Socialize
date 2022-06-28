@@ -3,6 +3,8 @@
 <link rel="stylesheet" href="/css/profile.css">
 <h1 id = "title"> profile </h1>
 
+<img src= <%= locals.user.avatar %>>
+
 <ul>
     <li> Name: <%= locals.user.name %></li>
     <li> Email: <%= locals.user.email %></li>
@@ -10,7 +12,9 @@
 
 <h3> Update Profile </h3>
 
-<form action="/user/update_profile" method = 'post'>
+<form action="/user/update_profile" method = 'post' enctype="multipart/form-data">
      <input type="text" placeholder = "New Name" required name = "name">
+
+     <input type="file" name="avatar" placeholder="Your Profile Pic">
      <button type="submit">Update</button>
 </form>

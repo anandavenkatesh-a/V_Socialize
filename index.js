@@ -55,6 +55,7 @@ app.use(sassMiddleware({
 
 //setup static folder
 app.use(express.static('./assets'));
+app.use('/uploads',express.static( __dirname + '/uploads'));
 
 //set up views and view engine
 app.set('view engine','ejs');
