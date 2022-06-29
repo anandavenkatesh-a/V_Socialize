@@ -40,14 +40,24 @@ module.exports.index = async (req,res) => {
 module.exports.delete = async (req,res) => {
     try{
         const post =  await Post.findById(req.params.id);
-
-        post.remove();
+        console.log(req.user);
+        if(post.user == req.user.id)
+        {
+            post.remove();
  
-        await Comment.deleteMany({post:post._id});
+           await Comment.deleteMany({post:post._id});
         
-        return res.json(200,{
-            message:'comments and associated posts are deleted'
-        });
+           return res.json(200,{
+              message:'comments and associated posts are deleted'
+           }); 
+        }
+        else
+        {
+            return res.status(401).json({
+                message:'you are unauthorized to delete the post'
+            });
+        }
+        
     }
     catch{
         return res.json(500,{

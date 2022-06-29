@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport'); //Passport is middleware for Node.js that makes it easy to implement authentication and authorization.
 const localAuth = require('./config/passport_auth_local_strategy');
+const passportJwt = require('./config/passport_jwt');
 const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash'); 
