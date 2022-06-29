@@ -20,4 +20,8 @@ router.post('/create-session',passport.authenticate('local',{failureRedirect:"/u
 router.get('/destroy-session',user_controller.destroySession);
 
 router.post('/update_profile',localAuth.checkAuthentication,user_controller.update_profile);
+
+router.get('/auth/google',passport.authenticate('google'));
+
+router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'user/sign-in'}),user_controller.create_session);
 module.exports = router;
