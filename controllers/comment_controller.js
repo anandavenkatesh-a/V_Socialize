@@ -2,6 +2,7 @@
 
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const commentMailer = require('../mailer/comments_mailer');
 module.exports.create = (req,res) => {
    //store in it collection Comment
    Post.findById(req.query.post_id,(err,post) => {
@@ -25,6 +26,10 @@ module.exports.create = (req,res) => {
                     //adding this comment in post
                     post.comments.push(new_comment);
                     post.save(); 
+
+                    new_comment.user = req.user;
+                    new_comment.post = post;
+                    commentMailer.newComment(new_comment);
                     return res.redirect('back');
                }
                catch
