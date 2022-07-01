@@ -3,6 +3,8 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const commentMailer = require('../mailer/comments_mailer');
+const queue = require('../config/kue');
+const commentEmailWorker = require('../workers/comment_email_worker');
 module.exports.create = (req,res) => {
    //store in it collection Comment
    Post.findById(req.query.post_id,(err,post) => {
@@ -21,7 +23,6 @@ module.exports.create = (req,res) => {
                    });   
                 
                     const result = await new_comment.save();
-                    console.log(result); //TODO remove this
                     
                     //adding this comment in post
                     post.comments.push(new_comment);
@@ -29,7 +30,18 @@ module.exports.create = (req,res) => {
 
                     new_comment.user = req.user;
                     new_comment.post = post;
-                    commentMailer.newComment(new_comment);
+                    
+                    let job = queue.create('comment_email',new_comment).save( function(err){
+                       if(err)
+                       {
+                          console.log(err);
+                          return;
+                       } 
+
+                       console.log( 'job id:',job.id,'enqueued' );
+                       
+                    });
+
                     return res.redirect('back');
                }
                catch
