@@ -2,8 +2,7 @@
     
     <link rel="stylesheet" href="/css/home.css">
   
-     
-    
+         
     <main id = "chats">
      
       <h1 class = "title" > Posts </h1>
@@ -36,6 +35,9 @@
           <%}%>
         <%}%>
     </ul>
+    <% if(locals.user){%>
+      <%- include('./partials/_chatbox.ejs') -%>
+    <%}%>
   </section>
   <%}%> 
 
@@ -52,4 +54,10 @@
   </script>
 
   <script src = "/script/home.js" ></script>
-
+  <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+  <script src ='/script/chat_engine.js'></script>
+  <% if(locals.user){ %>
+    <script>
+      new chatEngine('chatbox','<%= locals.user.email %>');
+    </script>
+  <% } %>

@@ -7,6 +7,8 @@
        <p class = "message"> <%= post.data %> </p> 
        <span class = "message_author"> <%= post.user.email %> </span> 
        
+
+       <a class = 'like' href="/api/v1/likes/toggle?id=<%= post._id %>&&type=Post"><i class="fa-solid fa-thumbs-up"></i></a>
        <%if(locals.user){%>
          <form action = <%= "/comment/create/?post_id="+ post._id %> class = "send_comment" method="post">
            <textarea name="data" cols="30" rows="3" placeholder = "Type your comments here...."></textarea>

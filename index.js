@@ -14,6 +14,8 @@ const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash'); 
 const customMiddlware = require('./config/custom_middlewares');
+const socket = require('socket.io');
+const http = require('http');
 const port = 9000;
 
 //Models
@@ -33,6 +35,13 @@ app.listen(port,(err) => {
        console.log(`Anandhamalthunai :: server is running on port : ${port}`);
     }
 }); 
+
+//intizialing socket.io
+const chatServer = http.createServer(app);//this is dedicated server for chat
+const chatSockets = require('./config/chat_socket').chatSockets(chatServer);
+const chatServerPort = 9003;
+chatServer.listen(chatServerPort);
+console.log('Anand :: chatServer is listening on port',chatServerPort);
 
 //middlewares(to build express application)
 

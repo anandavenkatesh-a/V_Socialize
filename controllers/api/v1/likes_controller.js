@@ -1,8 +1,8 @@
 
 
-const Like = require('../models/like');
-const Comment = require('../models/comment');
-const Post = require('../models/post');
+const Like = require('../../../models/like');
+const Comment = require('../../../models/comment');
+const Post = require('../../../models/post');
 module.exports.toogleLike = async (req,res) => {
       try{
          let deleted = false;
@@ -16,11 +16,15 @@ module.exports.toogleLike = async (req,res) => {
             likeable = await Comment.findById(req.query.id).populate('likes');
          }
 
-         let like = Like.find({
+         console.log(likeable);
+
+         let like = await Like.findOne({
             docModel:req.query.type,
-            likeable:req.user_id,
+            likeable:req.query.id,
             user:req.user._id,     
          });
+
+         console.log('This is like',like);
 
          if(like)
          {
@@ -40,6 +44,9 @@ module.exports.toogleLike = async (req,res) => {
             likeable.likes.push(like._id);
             likeable.save();
          }
+         console.log(like);
+
+         console.log(likeable);
 
          return res.status(200).json({
             message:'req success',
