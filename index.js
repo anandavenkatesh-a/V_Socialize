@@ -58,15 +58,15 @@ app.set('layout extractScripts',true);
 
 //setup sass
 app.use(sassMiddleware({
-   src:path.join(__dirname,env.asset_path,'scss'),
-   dest:path.join(__dirname,env.asset_path,'css'),
+   src:path.join(__dirname,env.asset_path,'/scss'),
+   dest:path.join(__dirname,env.asset_path,'/css'),
    debug:true, //untill production stage it should be true
    outputStyle:"expanded",
    prefix:"/css"
 }));
 
 //setup static folder
-app.use(express.static(env.asset_path));
+app.use(express.static('.'+env.asset_path));
 app.use('/uploads',express.static( __dirname + '/uploads'));
 
 //set up views and view engine
