@@ -2,9 +2,9 @@
 
 //ODM
 const mongoose = require('mongoose');
-
+const env = require('./environment');
 //Connect to  db
-mongoose.connect('mongodb://localhost/v_socialize_dev');
+mongoose.connect('mongodb://localhost/' + env.db);
 
 //accesing the connection
 const db = mongoose.connection;

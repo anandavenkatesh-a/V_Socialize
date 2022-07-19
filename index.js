@@ -16,8 +16,9 @@ const flash = require('connect-flash');
 const customMiddlware = require('./config/custom_middlewares');
 const socket = require('socket.io');
 const http = require('http');
+const env = require('./config/environment');
 const port = 9000;
-
+const path = require('path');
 //Models
 const User = require('./models/user');
  
@@ -57,15 +58,15 @@ app.set('layout extractScripts',true);
 
 //setup sass
 app.use(sassMiddleware({
-   src:"./assets/scss",
-   dest:"./assets/css",
+   src:path.join(__dirname,env.asset_path,'scss'),
+   dest:path.join(__dirname,env.asset_path,'css'),
    debug:true, //untill production stage it should be true
    outputStyle:"expanded",
    prefix:"/css"
 }));
 
 //setup static folder
-app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 app.use('/uploads',express.static( __dirname + '/uploads'));
 
 //set up views and view engine
@@ -77,7 +78,7 @@ app.set('views','./views');
 app.use(session({
    name:"sessionid9000",
    resave:false,
-   secret:"Anandamalthunai",
+   secret:env.session_secret,
    saveUninitialized:false,
    cookie:{
       maxAge : (1000*60*90)

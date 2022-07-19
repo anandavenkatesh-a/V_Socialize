@@ -4,11 +4,11 @@ const { model } = require('mongoose');
 const passport = require('passport');
 const JwtStrategy = require('passport-jwt').Strategy;
 const JwtExtract = require('passport-jwt').ExtractJwt;
-
+const env = require('./environment');
 const User = require('../models/user');
 var opts = {}
 opts.jwtFromRequest = JwtExtract.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = 'Anandhamalthunai';
+opts.secretOrKey = env.jwt_secret;
 
 passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
     User.findOne({_id: jwt_payload._id}, function(err, user) {
