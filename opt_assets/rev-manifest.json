@@ -1,9 +1,11 @@
 {
+  "chat_engine.js": "chat_engine-4b483c0369.js",
   "chatbox.css": "chatbox-2d4ef0f4d6.css",
   "footer.css": "footer-456c2372f8.css",
   "friend_list.css": "friend_list-ec4b654055.css",
   "header.css": "header-914fb3b490.css",
   "home.css": "home-d8a54d8243.css",
+  "home.js": "home-7730f65944.js",
   "layout1.css": "layout1-7d01b1dc37.css",
   "profile.css": "profile-fc988a4649.css",
   "sign_in.css": "sign_in-a6e09c0264.css",
