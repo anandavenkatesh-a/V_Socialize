@@ -9,50 +9,41 @@
   bottom: 0;
   right: 0;
 }
-
 #chatbox .chat-display {
   overflow-y: scroll;
   list-style: none;
   padding: 0;
 }
-
 #chatbox .chat-display li {
   padding: 12px;
 }
-
 #chatbox .chat-display li span {
   display: inline-block;
   padding: 6px;
   border-radius: 12%;
 }
-
 #chatbox .chat-display .other-message {
   text-align: left;
 }
-
 #chatbox .chat-display .other-message span {
-  background-color: #3b3bde;
+  background-color: rgb(59, 59, 222);
   color: white;
   width: fit-content;
   border: 0px solid;
 }
-
 #chatbox .chat-display .self-message {
   text-align: right;
 }
-
 #chatbox .chat-display .self-message span {
-  background-color: #a5a5ef;
+  background-color: rgb(165, 165, 239);
   color: black;
   width: fit-content;
 }
-
 #chatbox .chat-type {
   display: grid;
   grid-template-columns: 6fr 1fr;
   grid-template-rows: 1fr;
 }
-
 #chatbox .chat-type button {
   background-color: lightgreen;
   color: black;

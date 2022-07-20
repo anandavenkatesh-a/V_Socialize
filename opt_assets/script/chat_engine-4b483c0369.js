@@ -1,0 +1,5 @@
+class chatEngine{constructor(e,o){this.chatbox=document.getElementById(e),this.userEmail=o,this.socket=io.connect("http://localhost:9003"),this.userEmail&&this.connectionHandler()}connectionHandler(){let t=this;this.socket.on("connect",()=>{console.log("socket :: client ---\x3e server"),t.socket.emit("join_room",{user_email:t.userEmail,chatroom:"V_room"}),t.socket.on("user_joined_room",e=>{console.log("user : ",e.user_email,"joined :",e.chatroom)}),t.chatbox.querySelector("button").addEventListener("click",e=>{e.preventDefault(),t.socket.emit("room_incomming_message",{chatroom:"V_room",userEmail:t.userEmail,data:t.chatbox.querySelector("input").value}),t.chatbox.querySelector("input").value=""}),t.socket.on("room_message",e=>{let o=t.chatbox.querySelector(".chat-display");t.userEmail==e.userEmail?o.innerHTML+=`<li class = 'self-message'>
+                      <span>${e.data}</span>
+                   </li>`:o.innerHTML+=`<li class = 'other-message'>
+                      <span>${e.data}</span>
+                   </li>`})})}}

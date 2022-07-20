@@ -19,6 +19,8 @@ const http = require('http');
 const env = require('./config/environment');
 const port = 9000;
 const path = require('path');
+const logger = require('./config/logger');
+
 //Models
 const User = require('./models/user');
  
@@ -46,6 +48,9 @@ console.log('Anand :: chatServer is listening on port',chatServerPort);
 
 //middlewares(to build express application)
 
+//setup logger
+app.use(logger);
+
 //setup parsers
 app.use(express.urlencoded());
 app.use(cookieParser()); //to populate req.cookies with an object keyed by cookie name
@@ -57,13 +62,16 @@ app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
 
 //setup sass
-app.use(sassMiddleware({
-   src:path.join(__dirname,env.asset_path,'/scss'),
-   dest:path.join(__dirname,env.asset_path,'/css'),
-   debug:true, //untill production stage it should be true
-   outputStyle:"expanded",
-   prefix:"/css"
-}));
+if(env.name == 'development')
+{
+   app.use(sassMiddleware({
+      src:path.join(__dirname,env.asset_path,'/scss'),
+      dest:path.join(__dirname,env.asset_path,'/css'),
+      debug:true, //untill production stage it should be true
+      outputStyle:"expanded",
+      prefix:"/css"
+   }));
+}
 
 //setup static folder
 app.use(express.static('.'+env.asset_path));

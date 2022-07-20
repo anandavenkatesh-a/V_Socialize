@@ -12,12 +12,10 @@ form {
   flex-wrap: wrap;
   align-items: center;
 }
-
 form * {
   margin-right: 6px;
   margin-right: 6px;
 }
-
 form button {
   width: 90px;
   color: white;

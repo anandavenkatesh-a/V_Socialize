@@ -18,7 +18,10 @@ const development = {
   google_client_id: '957095670216-r9s7dnb5ol57r7mmrtnknd2kkajucn77.apps.googleusercontent.com',
   google_client_secret: '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',
   google_callback_url: 'http://localhost:9000/user/auth/google/callback',
-  jwt_secret:'Anandhamalthunai'
+  jwt_secret:'Anandhamalthunai',
+  logger:{
+    mode:'dev',
+  }
 };
 
 const production = {
@@ -39,7 +42,10 @@ const production = {
   google_client_id: process.env.VSOC_GOOGLE_CLIENT_ID,
   google_client_secret: process.env.VSOC_GOOGLE_CLIENT_SECRET,
   google_callback_url: process.env.VSOC_GOOGLE_CALLBACK_URL,
-  jwt_secret:process.env.VSOC_JWT_SECRET
+  jwt_secret:process.env.VSOC_JWT_SECRET,
+  logger:{
+    mode:'combined',
+  }
 };
 
 if(process.env.VSOC_ENV)

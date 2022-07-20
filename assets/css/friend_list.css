@@ -9,11 +9,9 @@
   overflow-y: scroll;
   border-left: 1px solid blue;
 }
-
 #friend-list .title {
   color: skyblue;
 }
-
 #friend-list a {
   color: blue;
   text-decoration: none;
